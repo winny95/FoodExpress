@@ -7,7 +7,10 @@ COMMANDS:
 dropdb nameDb --> drop database 
 \dt --> List of tables of the database
 \l --> List of databases
-\!clear --> clear the console
-
-	
+\!clear --> clear the console	
 */
+
+-- #SETUP:
+
+-- create database with name: foodexpress
+CREATE DATABASE foodexpress;
