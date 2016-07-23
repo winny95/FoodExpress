@@ -1,0 +1,160 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="shortcut icon" type="image/png" href="favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+    
+	<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" href="./css/animate.min.css" />
+	<script src="./js/jquery-2.1.0.min.js"></script>
+	<script src="./js/bootstrap.min.js"></script>
+	<script src="./js/blocs.min.js"></script><link rel='stylesheet' href='./css/font-awesome.min.css'/><link rel='stylesheet' href='./css/ionicons.min.css'/><link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <script src='./js/jqBootstrapValidation.js'></script>
+	<script src='./js/formHandler.js'></script>
+    <title>Form - </title>
+</head>
+<body>
+<!-- Main container -->
+<div class="page-container">
+    <!-- Navigation Bloc --><div id="b-nav" class="bloc-container">
+	<div id="bloc-nav" class="d-mode">
+		<div class="bloc l-bloc bgc-white b-divider" id="nav-bloc">
+			<div class="container bloc-sm">
+				<nav class="navbar row">
+					<div class="navbar-header">
+						<a class="navbar-brand" href="index.html">FoodExpress</a>
+						<button id="nav-toggle" type="button" class="ui-navbar-toggle navbar-toggle" data-toggle="collapse" data-target=".navbar-1">
+							<span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+						</button>
+					</div>
+					<div class="collapse navbar-collapse navbar-1">
+						<ul class="site-navigation nav navbar-nav">
+							<li>
+								<a id="pl-1" onclick="scrollToTarget('#features')">Come funziona?</a>
+							</li>
+							<li>
+								<a href="form.html">Registrati</a>
+							</li>
+							<li>
+								<a href="form.html">Accedi</a>
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+		</div>
+	</div>
+</div><!-- Navigation Bloc END --><!-- bloc-5 --><div class="bloc l-bloc bgc-white" id="bloc-5">
+	<div class="container bloc-lg">
+		<div class="row">
+			<div class="col-sm-12">
+				<h1 class="mg-md ">
+					Registrati e goditi i nostri migliori piatti.
+				</h1>
+			</div>
+		</div>
+		<div class="row voffset">
+			<div class="col-sm-8">
+				<div class="panel">
+					<div class="panel-heading">
+						<h2 class="mg-clear tc-outer-space">
+							Registrati
+						</h2>
+					</div>
+					<div class="panel-body">
+						<form id="form-1" novalidate>
+							<div class="form-group">
+								<label>
+									Nome completo:
+								</label>
+								<input id="name" class="form-control" required />
+							</div>
+							<div class="form-group">
+								<label>
+									Email
+								</label>
+								<input id="remail" class="form-control" type="email" required data-validation-required-message="remail is required." />
+							</div>
+							<div class="form-group">
+								<label>
+									Password:
+								</label>
+								<input id="rpwd" class="form-control" type="password" required data-validation-required-message="rpwd is required." />
+							</div> 
+							<button class="bloc-button btn btn-lg btn-block btn-international-orange" type="submit">
+								Registrati
+							</button>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="panel">
+					<div class="panel-heading">
+						<h2 class="mg-clear tc-outer-space">
+							Accedi
+						</h2>
+					</div>
+					<div class="panel-body">
+						<form id="form-2" novalidate>
+							<div class="form-group">
+								<label>
+									Email:
+								</label>
+								<input id="email2" class="form-control" type="email" required />
+							</div>
+							<div class="form-group">
+								<label>
+									Password:
+								</label>
+								<input id="email2" class="form-control" type="password" required />
+							</div> 
+							<button class="bloc-button btn btn-lg btn-block btn-scarlet" type="submit">
+								Accedi
+							</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div><!-- bloc-5 END --><!-- Footer - bloc-6 --><div class="bloc bgc-white l-bloc b-divider" id="bloc-6">
+	<div class="container bloc-md">
+		<div class="row">
+			<div class="col-sm-3">
+				<h3 class="mg-md">
+					About
+				</h3><a href="index.html" class="a-btn a-block">The team</a><a href="index.html" class="a-btn a-block">Contact us</a>
+			</div>
+			<div class="col-sm-3">
+				<h3 class="mg-md">
+					Get the App
+				</h3><a href="index.html" class="a-btn a-block">iPhone</a><a href="index.html" class="a-btn a-block">Android</a>
+			</div>
+			<div class="col-sm-3">
+				<h3 class="mg-md">
+					Follow us
+				</h3><a href="index.html" class="a-btn a-block">Twitter</a><a href="index.html" class="a-btn a-block">Facebook</a>
+			</div>
+			<div class="col-sm-3">
+				<h3 class="mg-md">
+					Company
+				</h3><a href="index.html" class="a-btn a-block">Terms of use</a><a href="index.html" class="a-btn a-block">Privacy</a>
+			</div>
+		</div>
+	</div>
+</div><!-- Footer - bloc-6 END -->
+</div>
+<!-- Main container END -->
+
+</body>
+    
+<!-- Google Analytics -->
+
+<!-- Google Analytics END -->
+
+</html>
