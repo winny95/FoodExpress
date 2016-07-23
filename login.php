@@ -1,3 +1,11 @@
+<?php
+
+	if ($_SERVER["REQUEST_METHOD"] == "POST") {
+		echo $_POST['email'];
+	}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -5,7 +13,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Home</title>
+    <title>Login</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -35,21 +43,27 @@
 		    <!-- Collect the nav links, forms, and other content for toggling -->
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		      <ul class="nav navbar-nav">
-		        <li><a href="login.php">Accedi</a></li>
+		        <li><a href="login.php">Home</a></li>
 		        <li><a href="signup.php">Registrati</a></li>
 		      </ul>
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
 		</nav>
 		
-		<div class="jumbotron">
-			<div class="container">
-				<h1>Hello, world!</h1>
-				<p>...</p>
-				<p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
-			</div>
+		<div class="container">
+			<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+			  <div class="form-group">
+			    <label for="exampleInputEmail1">Email address</label>
+			    <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+			  </div>
+			  <div class="form-group">
+			    <label for="exampleInputPassword1">Password</label>
+			    <input type="password" class="form-control" name="pwd" id="pwd" placeholder="Password">
+			  </div>
+			  <input type="submit" class="btn btn-default">
+			</form>
+			
 		</div>
-		
 		
 		
 
