@@ -1,8 +1,5 @@
 <?php
-
-	if ($_SERVER["REQUEST_METHOD"] == "POST") {
-		echo $_POST['email'];
-	}
+	include 'local_server/functions.php';
 
 ?>
 
@@ -43,7 +40,7 @@
 		    <!-- Collect the nav links, forms, and other content for toggling -->
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		      <ul class="nav navbar-nav">
-		        <li><a href="login.php">Home</a></li>
+		        <li><a href="index.php">Home</a></li>
 		        <li><a href="signup.php">Registrati</a></li>
 		      </ul>
 		    </div><!-- /.navbar-collapse -->
@@ -53,13 +50,14 @@
 		<div class="container">
 			<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 			  <div class="form-group">
-			    <label for="exampleInputEmail1">Email address</label>
+			    <label for="email">Email address</label>
 			    <input type="email" class="form-control" name="email" id="email" placeholder="Email">
 			  </div>
 			  <div class="form-group">
-			    <label for="exampleInputPassword1">Password</label>
-			    <input type="password" class="form-control" name="pwd" id="pwd" placeholder="Password">
+			    <label for="pwd">Password</label>
+			    <input type="password" class="form-control" name="password" id="password" placeholder="Password">
 			  </div>
+			  <input type="hidden" name="function" value="login">
 			  <input type="submit" class="btn btn-default">
 			</form>
 			
