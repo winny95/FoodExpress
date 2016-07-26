@@ -1,10 +1,5 @@
 <?php
-	session_start();
-	$set= false;
-	if(isset($_SESSION['email'])){
-		$set = true;
-	}	
-
+	include 'local_server/functions.php';
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Home</title>
+    <title>Signup</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -38,42 +33,47 @@
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 		      </button>
-		      <a class="navbar-brand" href="#">FoodExpress</a>
+		      <a class="navbar-brand" href="index.php">FoodExpress</a>
 		    </div>
 		
 		    <!-- Collect the nav links, forms, and other content for toggling -->
-		   
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			  <?php if(!$set){	?>
 		      <ul class="nav navbar-nav">
-		        <li><a href="login.php">Accedi</a></li>
-		        <li><a href="signup.php">Registrati</a></li>
+		        <li><a href="index.php">Home</a></li>
+		        <li><a href="login.php">Login</a></li>
 		      </ul>
-		      <?php }else{	?>
-		      <ul class="nav navbar-nav navbar-right">
-		        <li class="dropdown">
-		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><? echo $_SESSION['name']; ?> <span class="caret"></span></a>
-		          <ul class="dropdown-menu">
-		            <li><a href="#">Informazioni</a></li>
-		            <li><a href="#">I miei ordini</a></li>
-		            <li role="separator" class="divider"></li>
-		            <li><a href="logout.php">Logout</a></li>
-		          </ul>
-		        </li>
-		      </ul>
-		      <?php }	?>
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
 		</nav>
 		
-		<div class="jumbotron">
-			<div class="container">
-				<h1>Hello, world!</h1>
-				<p>...</p>
-				<p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
-			</div>
+		<div class="container">
+			<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+			  <div class="form-group">
+			    <label for="name">Name</label>
+			    <input type="text" class="form-control" name="name" id="name" placeholder="Name">
+			  </div>
+			  <div class="form-group">
+			    <label for="surname">Surname</label>
+			    <input type="text" class="form-control" name="surname" id="surname" placeholder="Surname">
+			  </div>
+			  <div class="form-group">
+			    <label for="email">Email address</label>
+			    <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+			  </div>
+			  <div class="form-group">
+			    <label for="telephone">Telephone</label>
+			    <input type="text" class="form-control" name="telephone" id="telephone" placeholder="Telephone">
+			  </div>
+			  <div class="form-group">
+			    <label for="pwd">Password</label>
+			    <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+			  </div>
+			  
+			  <input type="hidden" name="function" value="signup">
+			  <input type="submit" class="btn btn-default">
+			</form>
+			
 		</div>
-		
 		
 		
 
