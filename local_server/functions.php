@@ -19,6 +19,19 @@
 			case 'logout':
 					session_destroy();
 					header("location:index.php");
+					break;
+			case 'information':
+					$info = getInfo();
+					break;
+			case 'newinfo':
+					$info = getPassword();
+					if($info['password'] != $_POST['password']){
+						echo "Sbagliata password corrente";
+					}else if($_POST['npassword'] != $_POST['rnpassword'])
+						echo "Errore nuove password";
+					else updateInfo();
+					break;
+					
 		}
 	}
 	
@@ -51,6 +64,42 @@
 			echo "Error";
 		}
 		pg_close($conn);
+	}
+	
+	function getInfo(){
+		connection_db();
+		$result = pg_query("SELECT * FROM foodexpress.client WHERE email = '".$_SESSION['email']."'") or die('Query failed: ' . pg_last_error());
+		$line = pg_fetch_array($result, null, PGSQL_ASSOC);
+		print_r($line);
+		pg_close($conn);
+		return $line;
+	}
+	
+	function getPassword(){
+		connection_db();
+		$result = pg_query("SELECT password FROM foodexpress.client WHERE email = '".$_SESSION['email']."'") or die('Query failed: ' . pg_last_error());
+		$line = pg_fetch_array($result, null, PGSQL_ASSOC);
+		print_r($line);
+		pg_close($conn);
+		return $line;
+	}
+	
+	function updateInfo(){
+		$email = $_POST['email'];
+		$password = $_POST['npassword']; 
+		$name = $_POST['name'];
+		$surname = $_POST['surname'];
+		$telephone = $_POST['telephone'];
+		connection_db();
+		$result = pg_query("UPDATE foodexpress.client SET email='".$email."', name='".$name."',surname='".$surname."',password='".$password."',telephone='".$telephone."' WHERE email='".$_SESSION['email']."'") or die('Query failed: ' . pg_last_error());
+		if(!$result){
+			echo "Error";
+		}
+		pg_close($conn);
+		
+		$_SESSION['email'] = $email;
+		$_SESSION['name']= $name;
+		
 	}
 	
 	function connection_db(){
