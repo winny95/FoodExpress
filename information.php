@@ -1,6 +1,12 @@
 <?php
+	session_start();
+	
+	if(!isset($_SESSION['email'])) 
+    { 
+		header("location:index.php");
+    } 	
+	
 	if(!isset($_REQUEST['function'])){
-		echo "setto information";
 		$_REQUEST['function'] = 'information';
 	}
 	include 'local_server/functions.php';
@@ -92,6 +98,10 @@
 			  <input type="submit" class="btn btn-default" value="Modify information">
 			</form>
 			
+			<form method="post" action="deleteaccount.php">
+				<input type="hidden" name="function" value="deleteaccount">
+				<input type="submit" class="btn btn-danger" value="Delete Account">
+			</form>
 		</div>
 		
 		

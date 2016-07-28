@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	
+	$error;
 	if(isset($_REQUEST['function'])){
 		switch($_REQUEST['function']){
 			case 'login': 
@@ -31,12 +31,29 @@
 						echo "Errore nuove password";
 					else updateInfo();
 					break;
+			case 'loginadmin':
+					
+					if( (strcmp($_POST['admin'],"admin")== 0) && (strcmp($_POST['password'],"admin")== 0)){
+						$_SESSION['login']="logged";
+						header("location:index.php");
+					}
+					break;
+			case 'deleteaccount':
+					deleteAccount();
+					break;
+			case 'getcategory':
+					$category = getCategory();
+					break;
+			case 'newplate':
+					echo "nuovo piatto";
+					newPlate();
+					break;
 					
 		}
 	}
 	
 	function login($email,$password){
-		connection_db();
+		$conn = connection_db();
 		$result = pg_query("SELECT email, name FROM foodexpress.client WHERE email = '".$email."' AND password = '".$password."'") or die('Query failed: ' . pg_last_error());
 		
 		$line = pg_fetch_array($result, null, PGSQL_ASSOC);
@@ -58,25 +75,29 @@
 	}
 	
 	function signup($email,$password,$name,$surname,$telephone){
-		connection_db();
+		$conn = connection_db();
 		$result = pg_query("INSERT INTO foodexpress.client(email,name,surname,password,telephone) VALUES('".$email."','".$name."','".$surname."','".$password."','".$telephone."')") or die('Query failed: ' . pg_last_error());
 		if(!$result){
-			echo "Error";
+			$error="Errore registrazione db. Riprova";
+		}else{
+			$_SESSION['email']=$email;
+			$_SESSION['name']=$name;
+			header("location:index.php");
 		}
 		pg_close($conn);
+		
 	}
 	
 	function getInfo(){
-		connection_db();
+		$conn = connection_db();
 		$result = pg_query("SELECT * FROM foodexpress.client WHERE email = '".$_SESSION['email']."'") or die('Query failed: ' . pg_last_error());
 		$line = pg_fetch_array($result, null, PGSQL_ASSOC);
-		print_r($line);
 		pg_close($conn);
 		return $line;
 	}
 	
 	function getPassword(){
-		connection_db();
+		$conn = connection_db();
 		$result = pg_query("SELECT password FROM foodexpress.client WHERE email = '".$_SESSION['email']."'") or die('Query failed: ' . pg_last_error());
 		$line = pg_fetch_array($result, null, PGSQL_ASSOC);
 		print_r($line);
@@ -90,7 +111,7 @@
 		$name = $_POST['name'];
 		$surname = $_POST['surname'];
 		$telephone = $_POST['telephone'];
-		connection_db();
+		$conn = connection_db();
 		$result = pg_query("UPDATE foodexpress.client SET email='".$email."', name='".$name."',surname='".$surname."',password='".$password."',telephone='".$telephone."' WHERE email='".$_SESSION['email']."'") or die('Query failed: ' . pg_last_error());
 		if(!$result){
 			echo "Error";
@@ -102,8 +123,41 @@
 		
 	}
 	
+	function deleteAccount(){
+		$conn = connection_db();
+		$result = pg_query("DELETE FROM foodexpress.client WHERE email='".$_SESSION['email']."'") or die('Query failed: ' . pg_last_error());
+		if(!$result){
+			echo "Error";
+		}
+		pg_close($conn);
+		session_unset();
+		header("location:index.php");
+		
+	}
+	
+	function getCategory(){
+		$conn = connection_db();
+		$result = pg_query("SELECT * FROM foodexpress.category") or die('Query failed: ' . pg_last_error());
+		if(!$result){
+			echo "Error";
+		}
+		$category=array();
+		while($row = pg_fetch_assoc($result)){
+			$category[]=$row;
+		}
+		pg_close($conn);
+		return $category;
+	}
+	
+	function newPlate(){
+		//checkImage();
+		//checkAttribute();
+		//inserimento nel db
+	}
+	
 	function connection_db(){
-		include 'sqlconnect.php';
+		$conn = pg_connect("host=localhost dbname=foodexpress") or die('Could not connect: ' . pg_last_error());
+		return $conn;
 	}
 	
 	

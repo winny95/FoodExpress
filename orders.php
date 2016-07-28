@@ -1,10 +1,15 @@
 <?php
 	session_start();
-	$set= false;
-	if(isset($_SESSION['email'])){
-		$set = true;
-	}	
-
+	
+	if(!isset($_SESSION['email'])) 
+    { 
+		header("location:index.php");
+    } 	
+	
+	if(!isset($_REQUEST['function'])){
+		$_REQUEST['function'] = 'orders';
+	}
+	include 'local_server/functions.php';
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +19,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Home</title>
+    <title>My Orders<script>
+    </script></title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -38,18 +44,11 @@
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 		      </button>
-		      <a class="navbar-brand" href="#">FoodExpress</a>
+		      <a class="navbar-brand" href="index.php">FoodExpress</a>
 		    </div>
 		
 		    <!-- Collect the nav links, forms, and other content for toggling -->
-		   
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			  <?php if(!$set){	?>
-		      <ul class="nav navbar-nav">
-		        <li><a href="login.php">Accedi</a></li>
-		        <li><a href="signup.php">Registrati</a></li>
-		      </ul>
-		      <?php }else{	?>
 		      <ul class="nav navbar-nav navbar-right">
 		        <li class="dropdown">
 		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><? echo $_SESSION['name']; ?> <span class="caret"></span></a>
@@ -61,21 +60,15 @@
 		          </ul>
 		        </li>
 		      </ul>
-		      <?php }	?>
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
 		</nav>
 		
-		<div class="jumbotron">
-			<div class="container">
-				<h1>Hello, world!</h1>
-				<p>...</p>
-				<p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
-			</div>
+		<div class="container">
+			<div class="page-header">
+				<h1>My orders</h1>
+			</div>			
 		</div>
-		
-
-		
 		
 		
 

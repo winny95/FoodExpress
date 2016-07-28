@@ -1,9 +1,13 @@
 <?php
 	session_start();
 	$set= false;
-	if(isset($_SESSION['email'])){
+	if(isset($_SESSION['login'])){
 		$set = true;
 	}	
+	
+	if(!$set){
+		header("location:login.php");
+	}
 
 ?>
 
@@ -14,10 +18,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Home</title>
+    <title>Home - Admin</title>
 
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -38,21 +42,27 @@
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 		      </button>
-		      <a class="navbar-brand" href="#">FoodExpress</a>
+		      <a class="navbar-brand" href="#">FoodExpress - Admin</a>
 		    </div>
 		
-		    <!-- Collect the nav links, forms, and other content for toggling -->
-		   
+		     
+		 
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			  <?php if(!$set){	?>
-		      <ul class="nav navbar-nav">
-		        <li><a href="login.php">Accedi</a></li>
+			   <ul class="nav navbar-nav">
+		         <li class="dropdown">
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Piatti<span class="caret"></span></a>
+		          <ul class="dropdown-menu">
+		            <li><a href="newplate.php">Inserisci nuovo piatto</a></li>
+		            <li><a href="orders.php">Gestisci piatti</a></li>
+		          </ul>
+		        </li>
 		        <li><a href="signup.php">Registrati</a></li>
 		      </ul>
-		      <?php }else{	?>
-		      <ul class="nav navbar-nav navbar-right">
+		      
+		      
+			  <ul class="nav navbar-nav navbar-right">
 		        <li class="dropdown">
-		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><? echo $_SESSION['name']; ?> <span class="caret"></span></a>
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin<span class="caret"></span></a>
 		          <ul class="dropdown-menu">
 		            <li><a href="information.php">Informazioni</a></li>
 		            <li><a href="orders.php">I miei ordini</a></li>
@@ -61,7 +71,6 @@
 		          </ul>
 		        </li>
 		      </ul>
-		      <?php }	?>
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
 		</nav>
@@ -75,13 +84,9 @@
 		</div>
 		
 
-		
-		
-		
-
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
   </body>
 </html>
